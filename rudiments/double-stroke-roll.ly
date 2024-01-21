@@ -15,4 +15,8 @@ rudiment = \drummode {
       \new DrumVoice { \stemUp \rudiment }
     >>
   >>
+
+  \layout {
+    ragged-last = ##f
+  }
 }
