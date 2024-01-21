@@ -65,19 +65,23 @@ async function buildHtml(rudiments: Rudiment[]) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>
-          <h1>Rudiments</h1>
-        </title>
+        <title>Rudiments</title>
         <style>{css}</style>
       </head>
       <body>
-        <h1>Rudiments</h1>
-        {rudiments.map((rudiment, index) => (
-          <div>
-            <h2>{rudiment.name}</h2>
-            <img key={index} src={rudiment.svgPath} alt={rudiment.name} />
-          </div>
-        ))}
+        <main>
+          <h1>Rudiments</h1>
+          {rudiments.map((rudiment, index) => (
+            <div>
+              <h2>{rudiment.name}</h2>
+              <img
+                key={index}
+                src={rudiment.svgPath}
+                alt={`${rudiment.name} Sheet Music`}
+              />
+            </div>
+          ))}
+        </main>
       </body>
     </html>
   );
