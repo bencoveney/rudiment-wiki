@@ -72,14 +72,17 @@ async function buildHtml(rudiments: Rudiment[]) {
         <main>
           <h1>Rudiments</h1>
           {rudiments.map((rudiment, index) => (
-            <div>
-              <h2>{rudiment.name}</h2>
-              <img
-                key={index}
-                src={rudiment.svgPath}
-                alt={`${rudiment.name} Sheet Music`}
-              />
-            </div>
+            <section className="rudiment" key={index}>
+              <div className="rudiment-title">
+                <h2>{rudiment.name}</h2>
+              </div>
+              <div className="rudiment-notation">
+                <img
+                  src={rudiment.svgPath}
+                  alt={`${rudiment.name} Sheet Music`}
+                />
+              </div>
+            </section>
           ))}
         </main>
       </body>
