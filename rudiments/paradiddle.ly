@@ -9,10 +9,10 @@ rudiment = \drummode {
 \score {
   <<
     \new DrumStaff <<
-      \override Score.SystemStartBar.collapse-height = #-inf.0
-      \omit Staff.TimeSignature
-      \omit Staff.Clef
       \new DrumVoice {
+        \override Score.SystemStartBar.collapse-height = #-inf.0
+        \omit Staff.TimeSignature
+        \omit Staff.Clef
         \override TextScript.Y-offset = 6
         \stemUp
         \rudiment
