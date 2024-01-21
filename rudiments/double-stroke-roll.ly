@@ -12,7 +12,11 @@ rudiment = \drummode {
       \override Score.SystemStartBar.collapse-height = #-inf.0
       \omit Staff.TimeSignature
       \omit Staff.Clef
-      \new DrumVoice { \stemUp \rudiment }
+      \new DrumVoice {
+        \override TextScript.Y-offset = 6
+        \stemUp
+        \rudiment
+      }
     >>
   >>
 
