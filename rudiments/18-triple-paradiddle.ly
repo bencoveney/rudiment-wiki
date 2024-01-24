@@ -1,7 +1,7 @@
 \version "2.22.1"
 
 rudiment = \drummode {
-  \tuplet 3/2 { sn8^"R" sn8^"L" sn8^"R" } \tuplet 3/2 { sn8^"L" sn8^"R" sn8^"L" } sn4^"R" r4
+  sn16^"R" 16^"L" sn16^"R" 16^"L" sn16^"R" 16^"L" sn16^"R" 16^"R" 16^"L" sn16^"R" 16^"L" sn16^"R" 16^"L" sn16^"R" 16^"L" 16^"L"
 }
 
 \score {
