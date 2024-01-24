@@ -67,6 +67,16 @@ async function buildHtml(rudiments: Rudiment[]) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Rudiments</title>
         <style>{css}</style>
+        <link
+          rel="icon"
+          type="image/png"
+          href="https://emojifavicon.dev/favicons/1f941.png"
+        />
+        <link
+          rel="shortcut icon"
+          type="image/x-icon"
+          href="https://emojifavicon.dev/favicons/1f941.ico"
+        />
       </head>
       <body>
         <main>
