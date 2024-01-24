@@ -13,6 +13,6 @@
   "type": "module",
   "scripts": {
     "build": "ts-node-esm ./src/index.tsx",
-    "dev": "concurrently --names ts-node,server \"nodemon --watch src -e ts,tsx --exec 'ts-node-esm' ./src/index.tsx\" \"http-server ./build\""
+    "dev": "concurrently --names ts-node,server \"nodemon --watch src --watch rudiments -e ts,tsx,css,ly --exec 'ts-node-esm' ./src/index.tsx\" \"http-server ./build\""
   }
 }
