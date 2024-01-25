@@ -24,7 +24,7 @@ tspan { white-space: pre; }
 <rect x="0.0000" y="-2.0000" width="0.1900" height="4.0000" ry="0.0000" fill="currentColor"/>
 </g>
 <g transform="translate(88.3299, 5.4491)">
-<text font-family="serif" font-size="2.2001" text-anchor="start" fill="currentColor">
+<text font-family="serif" font-size="1.5555" text-anchor="start" fill="currentColor">
 <tspan>R</tspan>
 </text>
 </g>
@@ -50,7 +50,7 @@ c0 95 -90 188 -158 254v-75h-21v500h21z" fill="currentColor"/>
 <rect x="-0.0650" y="-4.5000" width="0.1300" height="3.8139" ry="0.0400" fill="currentColor"/>
 </g>
 <g transform="translate(81.3929, 5.4491)">
-<text font-family="serif" font-size="2.2001" text-anchor="start" fill="currentColor">
+<text font-family="serif" font-size="1.5555" text-anchor="start" fill="currentColor">
 <tspan>L</tspan>
 </text>
 </g>
@@ -164,7 +164,7 @@ c0 95 -90 188 -158 254v-75h-21v500h21z" fill="currentColor"/>
 <path stroke-width="0.0800" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" fill="currentColor" d="M0.4436 0.3362C1.1869 0.8873 2.6324 0.9599 3.4499 0.4872L3.4499 0.4872C2.6384 0.8401 1.1929 0.7675 0.4436 0.3362z"/>
 </g>
 <g transform="translate(105.5608, 5.4491)">
-<text font-family="serif" font-size="2.2001" text-anchor="start" fill="currentColor">
+<text font-family="serif" font-size="1.5555" text-anchor="start" fill="currentColor">
 <tspan>L</tspan>
 </text>
 </g>
@@ -229,7 +229,7 @@ c0 95 -90 188 -158 254v-75h-21v500h21z" fill="currentColor"/>
 <rect x="-0.0650" y="-4.5000" width="0.1300" height="3.8139" ry="0.0400" fill="currentColor"/>
 </g>
 <g transform="translate(33.0572, 5.4491)">
-<text font-family="serif" font-size="2.2001" text-anchor="start" fill="currentColor">
+<text font-family="serif" font-size="1.5555" text-anchor="start" fill="currentColor">
 <tspan>L</tspan>
 </text>
 </g>
@@ -255,7 +255,7 @@ c0 95 -90 188 -158 254v-75h-21v500h21z" fill="currentColor"/>
 <rect x="-0.0650" y="-4.5000" width="0.1300" height="3.8139" ry="0.0400" fill="currentColor"/>
 </g>
 <g transform="translate(39.9942, 5.4491)">
-<text font-family="serif" font-size="2.2001" text-anchor="start" fill="currentColor">
+<text font-family="serif" font-size="1.5555" text-anchor="start" fill="currentColor">
 <tspan>R</tspan>
 </text>
 </g>
@@ -263,7 +263,7 @@ c0 95 -90 188 -158 254v-75h-21v500h21z" fill="currentColor"/>
 <rect x="0.0000" y="-2.0500" width="0.1600" height="4.1000" ry="0.0500" fill="currentColor"/>
 </g>
 <g transform="translate(15.8264, 5.4491)">
-<text font-family="serif" font-size="2.2001" text-anchor="start" fill="currentColor">
+<text font-family="serif" font-size="1.5555" text-anchor="start" fill="currentColor">
 <tspan>R</tspan>
 </text>
 </g>
@@ -278,7 +278,7 @@ c0 95 -90 188 -158 254v-75h-21v500h21z" fill="currentColor"/>
 c0 95 -90 188 -158 254v-75h-21v500h21z" fill="currentColor"/>
 </g>
 <g transform="translate(64.1621, 5.4491)">
-<text font-family="serif" font-size="2.2001" text-anchor="start" fill="currentColor">
+<text font-family="serif" font-size="1.5555" text-anchor="start" fill="currentColor">
 <tspan>R</tspan>
 </text>
 </g>
@@ -336,7 +336,7 @@ c0 95 -90 188 -158 254v-75h-21v500h21z" fill="currentColor"/>
 <rect x="-0.0650" y="-3.1000" width="0.1300" height="2.4856" ry="0.0400" fill="currentColor"/>
 </g>
 <g transform="translate(57.2251, 5.4491)">
-<text font-family="serif" font-size="2.2001" text-anchor="start" fill="currentColor">
+<text font-family="serif" font-size="1.5555" text-anchor="start" fill="currentColor">
 <tspan>L</tspan>
 </text>
 </g>
