@@ -38,7 +38,7 @@ async function getRudiments() {
         name += i === 0 ? character.toUpperCase() : character;
       }
     }
-    const svgPath = `/${SVG_DIR}${baseName}.cropped.svg`;
+    const svgPath = `./${SVG_DIR}${baseName}.cropped.svg`;
     return {
       lilypadPath,
       name,

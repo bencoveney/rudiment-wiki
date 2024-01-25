@@ -1,5 +1,14 @@
 # rudiments
 
+## Usage
+
+```bash
+$ npm run build
+$ npm run dev
+```
+
+## Lilypond
+
 http://lilypond.org/doc/v2.25/Documentation/usage/basic-command_002dline-options-for-lilypond
 
 ```bash
