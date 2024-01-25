@@ -42,3 +42,8 @@ main {
 .rudiment-notation {
   padding: 2em;
 }
+
+.rudiment-number {
+  font-weight: bold;
+  float: left;
+}

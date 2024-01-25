@@ -9,22 +9,28 @@ const RUDIMENTS_DIR = "rudiments/";
 const BUILD_DIR = "build/";
 const SVG_DIR = "assets/";
 
+const WORD_BREAK = "_";
+
 type Rudiment = {
   lilypadPath: string;
   name: string;
   slug: string;
   svgPath: string;
+  number: number;
 };
 async function getRudiments() {
   const base = resolve(process.cwd(), RUDIMENTS_DIR);
   const files = await readdir(base);
   return files.map<Rudiment>((fileName) => {
     const lilypadPath = relative(process.cwd(), resolve(base, fileName));
-    const slug = fileName.split(".")[0];
+    const baseName = fileName.split(".")[0];
+    const [numberPart, ...nameParts] = baseName.split(WORD_BREAK);
+    const slug = nameParts.join(WORD_BREAK);
+    const number = parseInt(numberPart, 10);
     let name = "";
     for (let i = 0; i < slug.length; i++) {
       const character = slug[i];
-      if (character === "-") {
+      if (character === WORD_BREAK) {
         i++;
         name += " ";
         name += slug[i].toUpperCase();
@@ -32,12 +38,13 @@ async function getRudiments() {
         name += i === 0 ? character.toUpperCase() : character;
       }
     }
-    const svgPath = `/${SVG_DIR}${slug}.cropped.svg`;
+    const svgPath = `/${SVG_DIR}${baseName}.cropped.svg`;
     return {
       lilypadPath,
       name,
       slug,
       svgPath,
+      number,
     };
   });
 }
@@ -84,6 +91,7 @@ async function buildHtml(rudiments: Rudiment[]) {
           {rudiments.map((rudiment, index) => (
             <section className="rudiment" key={index}>
               <div className="rudiment-title">
+                <span className="rudiment-number">{rudiment.number}:</span>
                 <h2>{rudiment.name}</h2>
               </div>
               <div className="rudiment-notation">
