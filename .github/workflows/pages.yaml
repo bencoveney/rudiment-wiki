@@ -12,6 +12,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "18.12.1"
+
       - name: Install Lilypond
         run: sudo apt-get install -y lilypond
 
