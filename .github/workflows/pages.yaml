@@ -27,6 +27,9 @@ jobs:
           npm ci
           npm run build
 
+      - name: Prevent Jekyll
+        run: touch ./build/.nojekyll
+
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.3.3
         with:
