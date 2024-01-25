@@ -2,7 +2,7 @@
 
 rudiment = \drummode {
   \repeat unfold 2 {
-    \tuplet 3/2 { \grace sn8^"R"(sn8^"L") sn8^"R" sn8^"L" } \tuplet 3/2 { \grace sn8^"L"(sn8^"R") sn8^"L" sn8^"R" }
+    \grace sn8^\markup { \teeny R }(\tuplet 3/2 { sn8^"L") sn8^"R" sn8^"L" } \grace sn8^\markup { \teeny L }(\tuplet 3/2 { sn8^"R") sn8^"L" sn8^"R" }
   }
 }
 

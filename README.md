@@ -20,13 +20,11 @@ lilypond --svg -dcrop=#t -dpoint-and-click=#f --output="./assets/" ./rudiments/s
 - Maybe add dev script:
   - Get nodemon changed files to reduce writes
   - Remove dependency on concurrently
-- Fix flam (grace note) hand size
 - Some stuff doesn't align between references
   - Numbers
   - Alternatives
   - Accents
 - Some rendering suboptimal
-  - Grace notes inside triplets
   - Accents above hands
 
 ## References

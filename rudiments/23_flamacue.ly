@@ -1,7 +1,7 @@
 \version "2.22.1"
 
 rudiment = \drummode {
-  \grace sn16^"R"(sn16^"L") 16^"R"-> sn16^"L" 16^"R" \grace sn16^"R"(4^"L") \grace sn16^"L"(sn16^"R") 16^"L"-> sn16^"R" 16^"L" \grace sn16^"L"(4^"R")
+  \grace sn16^\markup { \teeny R }(sn16^"L") 16^"R"-> sn16^"L" 16^"R" \grace sn16^\markup { \teeny R }(4^"L") \grace sn16^\markup { \teeny L }(sn16^"R") 16^"L"-> sn16^"R" 16^"L" \grace sn16^\markup { \teeny L }(4^"R")
 }
 
 \score {
