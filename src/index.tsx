@@ -4,6 +4,7 @@ import { exec } from "child_process";
 import { promisify } from "util";
 import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
+import { RudimentMetadata, metadata } from "./metadata.js";
 
 const RUDIMENTS_DIR = "rudiments/";
 const BUILD_DIR = "build/";
@@ -17,7 +18,7 @@ type Rudiment = {
   slug: string;
   svgPath: string;
   number: number;
-};
+} & RudimentMetadata;
 async function getRudiments() {
   const base = resolve(process.cwd(), RUDIMENTS_DIR);
   const files = await readdir(base);
@@ -39,7 +40,12 @@ async function getRudiments() {
       }
     }
     const svgPath = `./${SVG_DIR}${baseName}.cropped.svg`;
+    const additional = metadata.find((meta) => meta.file === fileName);
+    if (!additional) {
+      throw new Error(`Missing metadata for ${fileName}`);
+    }
     return {
+      ...additional,
       lilypadPath,
       name,
       slug,
@@ -111,9 +117,10 @@ async function buildHtml(rudiments: Rudiment[]) {
 
 async function buildSite() {
   const rudiments = await getRudiments();
+  // console.log(JSON.stringify(rudiments, null, 2));
   const svgDir = resolve(BUILD_DIR, SVG_DIR);
   await mkdir(svgDir, { recursive: true });
-  await buildRudiments(rudiments, svgDir);
+  // await buildRudiments(rudiments, svgDir);
   const content = await buildHtml(rudiments);
   await writeFile("./build/index.html", content, "utf-8");
 }

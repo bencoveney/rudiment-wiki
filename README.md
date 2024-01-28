@@ -31,4 +31,5 @@ lilypond --svg -dcrop=#t -dpoint-and-click=#f --output="./assets/" ./rudiments/s
 
 - https://vicfirth.zildjian.com/education/40-essential-rudiments.html
 - https://www.40drumrudiments.com/
+- https://www.drumeo.com/beat/rudiments/
 - https://www.pas.org/resources/rudiments
