@@ -2,7 +2,8 @@
 
 rudiment = \drummode {
   \repeat unfold 2 {
-    \tuplet 3/2 { sn8^"R" sn8^"L" sn8^"R" } \tuplet 3/2 { sn8^"R" sn8^"L" sn8^"L" }
+    \tuplet 3/2 { sn8^"R" sn8^"L" sn8^"R" }
+    \tuplet 3/2 { sn8^"R" sn8^"L" sn8^"L" }
   }
 }
 

@@ -3,7 +3,8 @@
 rudiment = \drummode {
   \repeat unfold 2 {
     \autoBeamOff
-    \grace sn8^\markup { \teeny L }(sn8^"R"[) sn8^"R"] \grace sn8^\markup { \teeny R }(sn8^"L"[) sn8^"L"]
+    \grace sn8^\markup { \teeny L }(sn8^"R"[) sn8^"R"]
+    \grace sn8^\markup { \teeny R }(sn8^"L"[) sn8^"L"]
   }
 }
 

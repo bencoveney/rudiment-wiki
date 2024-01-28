@@ -1,7 +1,8 @@
 \version "2.22.1"
 
 rudiment = \drummode {
-  sn16^"R" 16^"L" sn16^"R" 16^"L" sn16^"R" 16^"L" sn16^"R" 16^"R" 16^"L" sn16^"R" 16^"L" sn16^"R" 16^"L" sn16^"R" 16^"L" 16^"L"
+  sn16^"R" sn16^"L" sn16^"R" sn16^"L" sn16^"R" sn16^"L" sn16^"R" sn16^"R"
+  sn16^"L" sn16^"R" sn16^"L" sn16^"R" sn16^"L" sn16^"R" sn16^"L" sn16^"L"
 }
 
 \score {

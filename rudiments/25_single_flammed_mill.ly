@@ -2,7 +2,8 @@
 
 rudiment = \drummode {
   \repeat unfold 2 {
-    \grace sn16^\markup { \teeny L }(sn16^"R") 16^"R" sn16^"L" 16^"R" \grace sn16^\markup { \teeny R }(sn16^"L") 16^"L" sn16^"R" 16^"L"
+    \grace sn16^\markup { \teeny L }(sn16^"R") 16^"R" sn16^"L" 16^"R"
+    \grace sn16^\markup { \teeny R }(sn16^"L") 16^"L" sn16^"R" 16^"L"
   }
 }
 

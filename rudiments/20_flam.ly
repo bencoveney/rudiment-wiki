@@ -2,7 +2,8 @@
 
 rudiment = \drummode {
   \repeat unfold 2 {
-    \grace sn4^\markup { \teeny R }(sn4^"L") \grace sn4^\markup { \teeny L }(sn4^"R")
+    \grace sn4^\markup { \teeny R }(sn4^"L")
+    \grace sn4^\markup { \teeny L }(sn4^"R")
   }
 }
 

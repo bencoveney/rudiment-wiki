@@ -1,10 +1,8 @@
 \version "2.22.1"
 
 rudiment = \drummode {
-  \repeat unfold 2 {
-    \grace sn8^\markup { \teeny L }(\tuplet 3/2 { sn8^"R") sn8:16^"LL" sn8^"R" }
-    \grace sn8^\markup { \teeny R }(\tuplet 3/2 { sn8^"L") sn8:16^"RR" sn8^"L" }
-  }
+  sn8^"R" \grace {sn16^\markup { \teeny L } sn16^\markup { \teeny L }( } sn8^"R") \grace {sn16^\markup { \teeny L } sn16^\markup { \teeny L }( } sn16^"R") sn16^"L" sn16^"R" sn16^"R"
+  sn8^"L" \grace {sn16^\markup { \teeny R } sn16^\markup { \teeny R }( } sn8^"L") \grace {sn16^\markup { \teeny R } sn16^\markup { \teeny R }( } sn16^"L") sn16^"R" sn16^"L" sn16^"L"
 }
 
 \score {
