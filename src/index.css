@@ -7,40 +7,97 @@
     Segoe UI Emoji, Segoe UI Symbol;
   --font-monospace: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console,
     monospace;
+
+  /* https://colorhunt.co/palette/eeedebe0ccbe7472643c3633 */
+  --color-white: #eeedeb;
+  --color-salmon: #e0ccbe;
+  --color-green: #747264;
+  --color-black: #3c3633;
+
+  --theme-background: var(--color-white);
+  --theme-foreground: var(--color-black);
+  --theme-action: var(--color-green);
+  --theme-highlight: var(--color-salmon);
 }
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --theme-background: var(--color-black);
+    --theme-foreground: var(--color-white);
+  }
+} */
 
 * {
   margin: 0;
   padding: 0;
   border: 0;
-  font-size: 100%;
-  font: inherit;
   vertical-align: baseline;
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
 }
 
 body {
-  font-family: var(--font-sans-serif);
+  font-family: var(--font-serif);
+  background-color: var(--theme-background);
+  color: var(--theme-foreground);
 }
 
 main {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: stretch;
   text-align: center;
 }
 
+main > * {
+  width: 100%;
+  max-width: 900px;
+}
+
+h1 {
+  font-size: 2em;
+  margin: 2em 0 1em;
+}
+
+h1 > .wiki {
+  color: var(--theme-action);
+}
+
 .rudiment {
-  border: 1px solid grey;
-  margin: 0.5em;
+  margin: 1em;
+  border-radius: 0.5em;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: center;
 }
 
 .rudiment-title {
-  padding: 0.5em;
-  border-bottom: 1px solid grey;
+  padding: 1em;
+  font-weight: 100;
+  font-size: 1.3em;
 }
 
 .rudiment-notation {
   padding: 2em;
+  color: var(--theme-foreground);
+  width: 100%;
+}
+
+.rudiment-notation > svg {
+  width: 100% !important;
+  height: auto !important;
 }
 
 .rudiment-number {

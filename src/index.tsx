@@ -18,6 +18,7 @@ type Rudiment = {
   slug: string;
   svgPath: string;
   number: number;
+  loadedSvg: string;
 } & RudimentMetadata;
 async function getRudiments() {
   const base = resolve(process.cwd(), RUDIMENTS_DIR);
@@ -51,23 +52,27 @@ async function getRudiments() {
       slug,
       svgPath,
       number,
+      loadedSvg: "",
     };
   });
 }
 
 const execPromise = promisify(exec);
-async function buildRudiment(rudimentFile: string, outputDir: string) {
+async function buildRudiment(rudiment: Rudiment, outputDir: string) {
   const command = `
-    lilypond --svg -dcrop=#t -dpoint-and-click=#f --output="${outputDir}" ${rudimentFile};
+    lilypond --svg -dcrop=#t -dpoint-and-click=#f --output="${outputDir}" ${rudiment.lilypadPath};
   `.trim();
-  console.log(command);
   const { stderr } = await execPromise(command);
   console.log(stderr);
+  const loadedSvg = await readFile(resolve(BUILD_DIR, rudiment.svgPath), {
+    encoding: "utf-8",
+  });
+  rudiment.loadedSvg = loadedSvg;
 }
 
 async function buildRudiments(rudiments: Rudiment[], outputDir: string) {
   await Promise.all(
-    rudiments.map((rudiment) => buildRudiment(rudiment.lilypadPath, outputDir))
+    rudiments.map((rudiment) => buildRudiment(rudiment, outputDir))
   );
 }
 
@@ -78,8 +83,8 @@ async function buildHtml(rudiments: Rudiment[]) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Rudiments</title>
-        <style>{css}</style>
+        <title>Rudiment Wiki</title>
+        <style dangerouslySetInnerHTML={{ __html: css }} />
         <link
           rel="icon"
           type="image/png"
@@ -93,19 +98,19 @@ async function buildHtml(rudiments: Rudiment[]) {
       </head>
       <body>
         <main>
-          <h1>Rudiments</h1>
+          <h1>
+            Rudiment <span className="wiki">Wiki</span>
+          </h1>
           {rudiments.map((rudiment, index) => (
             <section className="rudiment" key={index}>
               <div className="rudiment-title">
-                <span className="rudiment-number">{rudiment.number}:</span>
+                {/* <span className="rudiment-number">{rudiment.number}:</span> */}
                 <h2>{rudiment.name}</h2>
               </div>
-              <div className="rudiment-notation">
-                <img
-                  src={rudiment.svgPath}
-                  alt={`${rudiment.name} Sheet Music`}
-                />
-              </div>
+              <div
+                className="rudiment-notation"
+                dangerouslySetInnerHTML={{ __html: rudiment.loadedSvg }}
+              ></div>
             </section>
           ))}
         </main>
@@ -120,7 +125,7 @@ async function buildSite() {
   // console.log(JSON.stringify(rudiments, null, 2));
   const svgDir = resolve(BUILD_DIR, SVG_DIR);
   await mkdir(svgDir, { recursive: true });
-  // await buildRudiments(rudiments, svgDir);
+  await buildRudiments(rudiments, svgDir);
   const content = await buildHtml(rudiments);
   await writeFile("./build/index.html", content, "utf-8");
 }
