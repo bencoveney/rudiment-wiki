@@ -57,6 +57,7 @@ main {
   align-items: center;
   justify-content: stretch;
   text-align: center;
+  padding: 1em 0;
 }
 
 main > * {
@@ -65,8 +66,8 @@ main > * {
 }
 
 h1 {
-  font-size: 2em;
-  margin: 2em 0 1em;
+  font-size: 2rem;
+  margin: 2rem 0;
 }
 
 h1 > .wiki {
@@ -74,8 +75,8 @@ h1 > .wiki {
 }
 
 .rudiment {
-  margin: 1em;
-  border-radius: 0.5em;
+  margin: 1rem;
+  border-radius: 0.5rem;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   display: flex;
   flex-direction: column;
@@ -84,13 +85,13 @@ h1 > .wiki {
 }
 
 .rudiment-title {
-  padding: 1em;
+  padding: 1rem;
   font-weight: 100;
-  font-size: 1.3em;
+  font-size: 1.3rem;
 }
 
 .rudiment-notation {
-  padding: 2em;
+  padding: 2rem;
   color: var(--theme-foreground);
   width: 100%;
 }
@@ -104,7 +105,100 @@ h1 > .wiki {
   font-weight: bold;
   float: left;
 }
-</style><link rel="icon" type="image/png" href="https://emojifavicon.dev/favicons/1f941.png"/><link rel="shortcut icon" type="image/x-icon" href="https://emojifavicon.dev/favicons/1f941.ico"/></head><body><main><h1>Rudiment <span class="wiki">Wiki</span></h1><section class="rudiment"><div class="rudiment-title"><h2>Single Stroke Roll</h2></div><div class="rudiment-notation"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.2" width="175.11mm" height="16.96mm" viewBox="8.4758 0.0000 99.6446 9.6538">
+
+footer {
+  width: 100%;
+  position: sticky;
+  bottom: 0;
+  background-color: var(--theme-highlight);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: stretch;
+  font-family: var(--font-sans-serif);
+}
+
+.metronome_name {
+  display: block;
+  padding: 0.5rem 1rem;
+  background: var(--theme-foreground);
+  color: var(--theme-background);
+}
+
+.metronome_bpm_wrapper {
+  display: block;
+  padding: 0.5rem 1rem;
+}
+
+.metronome_bpm_wrapper > #metronome_bpm {
+  padding: 0.25em 0.5rem;
+  margin: -0.25em 0 -0.25em 0.5rem;
+  font-size: inherit;
+  font-family: inherit;
+  width: 5rem;
+  background-color: var(--theme-background);
+  color: var(--theme-foreground);
+}
+
+#metronome_playstop {
+  padding: 0.5rem 1rem;
+  background: var(--theme-action);
+  color: var(--theme-background);
+  font-size: inherit;
+  font-family: inherit;
+  min-width: 5rem;
+}
+
+.footer_about {
+  display: block;
+  flex-grow: 1;
+  display: flex;
+  justify-content: end;
+  align-items: stretch;
+}
+
+.footer_about > a {
+  padding: 0.5rem 1rem;
+  display: block;
+}
+
+.footer_about > a:link,
+.footer_about > a:hover,
+.footer_about > a:visited,
+.footer_about > a:active {
+  color: var(--theme-foreground);
+  text-decoration: underline;
+}
+
+.footer_about > a:hover {
+  background: var(--theme-action);
+  color: var(--theme-background);
+}
+</style><script>function init() {
+  const playStopInput = document.getElementById("metronome_playstop");
+  const bpmInput = document.getElementById("metronome_bpm");
+  let isPlaying = false;
+
+  const playMessage = playStopInput.textContent;
+  const stopMessage = "Stop";
+
+  playStopInput.addEventListener("click", function () {
+    if (isPlaying) {
+      console.log("stopping");
+      isPlaying = !isPlaying;
+      playStopInput.textContent = playMessage;
+      return;
+    }
+
+    const bpm = bpmInput.value;
+    console.log(`playing at ${bpm} bpm`);
+    isPlaying = !isPlaying;
+    playStopInput.textContent = stopMessage;
+  });
+}
+
+window.addEventListener("load", init);
+</script><link rel="icon" type="image/png" href="https://emojifavicon.dev/favicons/1f941.png"/><link rel="shortcut icon" type="image/x-icon" href="https://emojifavicon.dev/favicons/1f941.ico"/></head><body><main><h1>Rudiment <span class="wiki">Wiki</span></h1><section class="rudiment"><div class="rudiment-title"><h2>Single Stroke Roll</h2></div><div class="rudiment-notation"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.2" width="175.11mm" height="16.96mm" viewBox="8.4758 0.0000 99.6446 9.6538">
 <style type="text/css">
 <![CDATA[
 tspan { white-space: pre; }
@@ -9755,4 +9849,4 @@ c-49 51 -66 122 -66 193s17 142 66 193c47 49 116 69 184 69c87 0 160 -63 175 -149c
 <path transform="scale(0.0040, -0.0040)" d="M218 136c55 0 108 -28 108 -89c0 -71 -55 -121 -102 -149c-35 -21 -75 -34 -116 -34c-55 0 -108 28 -108 89c0 71 55 121 102 149c35 21 75 34 116 34z" fill="currentColor"/>
 </g>
 </svg>
-</div></section></main></body></html>
+</div></section></main><footer><span class="metronome_name">Metronome</span><label class="metronome_bpm_wrapper">BPM <input id="metronome_bpm" type="number" min="1" value="60"/></label><button id="metronome_playstop">Play</button><span class="footer_about"><a href="https://github.com/bencoveney/rudiments">About</a></span></footer></body></html>
