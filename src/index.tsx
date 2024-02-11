@@ -78,6 +78,7 @@ async function buildRudiments(rudiments: Rudiment[], outputDir: string) {
 
 async function buildHtml(rudiments: Rudiment[]) {
   const css = await readFile("./src/index.css", { encoding: "utf-8" });
+  const metronome = await readFile("./src/metronome.js", { encoding: "utf-8" });
   const content = renderToStaticMarkup(
     <html lang="en">
       <head>
@@ -85,6 +86,7 @@ async function buildHtml(rudiments: Rudiment[]) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Rudiment Wiki</title>
         <style dangerouslySetInnerHTML={{ __html: css }} />
+        <script dangerouslySetInnerHTML={{ __html: metronome }} />
         <link
           rel="icon"
           type="image/png"
@@ -114,6 +116,17 @@ async function buildHtml(rudiments: Rudiment[]) {
             </section>
           ))}
         </main>
+        <footer>
+          <span className="metronome_name">Metronome</span>
+          <label className="metronome_bpm_wrapper">
+            BPM{" "}
+            <input id="metronome_bpm" type="number" min={1} defaultValue={60} />
+          </label>
+          <button id="metronome_playstop">Play</button>
+          <span className="footer_about">
+            <a href="https://github.com/bencoveney/rudiments">About</a>
+          </span>
+        </footer>
       </body>
     </html>
   );

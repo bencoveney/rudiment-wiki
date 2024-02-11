@@ -57,6 +57,7 @@ main {
   align-items: center;
   justify-content: stretch;
   text-align: center;
+  padding: 1em 0;
 }
 
 main > * {
@@ -65,8 +66,8 @@ main > * {
 }
 
 h1 {
-  font-size: 2em;
-  margin: 2em 0 1em;
+  font-size: 2rem;
+  margin: 2rem 0;
 }
 
 h1 > .wiki {
@@ -74,8 +75,8 @@ h1 > .wiki {
 }
 
 .rudiment {
-  margin: 1em;
-  border-radius: 0.5em;
+  margin: 1rem;
+  border-radius: 0.5rem;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   display: flex;
   flex-direction: column;
@@ -84,13 +85,13 @@ h1 > .wiki {
 }
 
 .rudiment-title {
-  padding: 1em;
+  padding: 1rem;
   font-weight: 100;
-  font-size: 1.3em;
+  font-size: 1.3rem;
 }
 
 .rudiment-notation {
-  padding: 2em;
+  padding: 2rem;
   color: var(--theme-foreground);
   width: 100%;
 }
@@ -103,4 +104,73 @@ h1 > .wiki {
 .rudiment-number {
   font-weight: bold;
   float: left;
+}
+
+footer {
+  width: 100%;
+  position: sticky;
+  bottom: 0;
+  background-color: var(--theme-highlight);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: stretch;
+  font-family: var(--font-sans-serif);
+}
+
+.metronome_name {
+  display: block;
+  padding: 0.5rem 1rem;
+  background: var(--theme-foreground);
+  color: var(--theme-background);
+}
+
+.metronome_bpm_wrapper {
+  display: block;
+  padding: 0.5rem 1rem;
+}
+
+.metronome_bpm_wrapper > #metronome_bpm {
+  padding: 0.25em 0.5rem;
+  margin: -0.25em 0 -0.25em 0.5rem;
+  font-size: inherit;
+  font-family: inherit;
+  width: 5rem;
+  background-color: var(--theme-background);
+  color: var(--theme-foreground);
+}
+
+#metronome_playstop {
+  padding: 0.5rem 1rem;
+  background: var(--theme-action);
+  color: var(--theme-background);
+  font-size: inherit;
+  font-family: inherit;
+  min-width: 5rem;
+}
+
+.footer_about {
+  display: block;
+  flex-grow: 1;
+  display: flex;
+  justify-content: end;
+  align-items: stretch;
+}
+
+.footer_about > a {
+  padding: 0.5rem 1rem;
+  display: block;
+}
+
+.footer_about > a:link,
+.footer_about > a:hover,
+.footer_about > a:visited,
+.footer_about > a:active {
+  color: var(--theme-foreground);
+  text-decoration: underline;
+}
+
+.footer_about > a:hover {
+  background: var(--theme-action);
+  color: var(--theme-background);
 }
