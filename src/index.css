@@ -65,7 +65,7 @@ h1 > .wiki {
   color: var(--theme-action);
 }
 
-.rudiment {
+.r {
   margin: 1rem;
   border-radius: 0.5rem;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -76,26 +76,26 @@ h1 > .wiki {
   background-color: white;
 }
 
-.rudiment-title {
+.r-title {
   padding: 1rem;
 }
 
-.rudiment-title > h2 {
+.r-title > h2 {
   font-size: 1.3rem;
 }
 
-.rudiment-notation {
+.r-notation {
   padding: 2rem;
   color: var(--theme-foreground);
   width: 100%;
 }
 
-.rudiment-notation > svg {
+.r-notation > svg {
   width: 100% !important;
   height: auto !important;
 }
 
-.rudiment-number {
+.r-number {
   font-weight: bold;
   float: left;
 }

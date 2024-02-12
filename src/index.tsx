@@ -135,6 +135,16 @@ async function buildRudiments(rudiments: Rudiment[], outputDir: string) {
   );
 }
 
+function compressCss(source: string): string {
+  return source
+    .replaceAll(/\/\*((?:(?!\*\/).)+)\*\//gs, "")
+    .replaceAll(/\n\s*/gs, "");
+}
+
+function compressJs(source: string): string {
+  return source.replaceAll(/\n\s*/gs, "");
+}
+
 async function buildHtml(rudiments: Rudiment[]) {
   const css = await readFile("./src/index.css", { encoding: "utf-8" });
   const metronome = await readFile("./src/metronome.js", { encoding: "utf-8" });
@@ -146,11 +156,10 @@ async function buildHtml(rudiments: Rudiment[]) {
         <title>Rudiment Wiki</title>
         <meta
           name="description"
-          content="40 essential drum rudiments for practising your chops, available for
-          free."
+          content="40 essential drum rudiments for practising your chops, available for free."
         />
-        <style dangerouslySetInnerHTML={{ __html: css }} />
-        <script dangerouslySetInnerHTML={{ __html: metronome }} />
+        <style dangerouslySetInnerHTML={{ __html: compressCss(css) }} />
+        <script dangerouslySetInnerHTML={{ __html: compressJs(metronome) }} />
         <link
           rel="icon"
           type="image/png"
@@ -168,13 +177,13 @@ async function buildHtml(rudiments: Rudiment[]) {
             Rudiment <span className="wiki">Wiki</span>
           </h1>
           {rudiments.map((rudiment, index) => (
-            <section className="rudiment" key={index}>
-              <div className="rudiment-title">
-                {/* <span className="rudiment-number">{rudiment.number}:</span> */}
+            <section className="r" key={index}>
+              <div className="r-title">
+                {/* <span className="r-number">{rudiment.number}:</span> */}
                 <h2>{rudiment.name}</h2>
               </div>
               <div
-                className="rudiment-notation"
+                className="r-notation"
                 dangerouslySetInnerHTML={{ __html: rudiment.compressedSvg }}
               ></div>
             </section>

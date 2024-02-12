@@ -1,23 +1,16 @@
 function init() {
-  const playStopInput = document.getElementById("metronome_playstop");
-  const bpmInput = document.getElementById("metronome_bpm");
-  let isPlaying = false;
+  const playStop = document.getElementById("metronome_playstop");
+  const bpm = document.getElementById("metronome_bpm");
+  let playing = false;
 
-  const playMessage = playStopInput.textContent;
-  const stopMessage = "Stop";
+  const play = playStop.textContent;
+  const stop = "Stop";
 
-  playStopInput.addEventListener("click", function () {
-    if (isPlaying) {
-      console.log("stopping");
-      isPlaying = !isPlaying;
-      playStopInput.textContent = playMessage;
-      return;
-    }
-
-    const bpm = bpmInput.value;
-    console.log(`playing at ${bpm} bpm`);
-    isPlaying = !isPlaying;
-    playStopInput.textContent = stopMessage;
+  playStop.addEventListener("click", function () {
+    const bpm = bpm.value;
+    playing = !playing;
+    console.log(playing ? `playing at ${bpm} bpm` : "stopping");
+    playStop.textContent = playing ? play : stop;
   });
 }
 
