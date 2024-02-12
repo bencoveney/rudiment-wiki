@@ -19,6 +19,7 @@ type Rudiment = {
   svgPath: string;
   number: number;
   loadedSvg: string;
+  compressedSvg: string;
 } & RudimentMetadata;
 async function getRudiments() {
   const base = resolve(process.cwd(), RUDIMENTS_DIR);
@@ -53,6 +54,7 @@ async function getRudiments() {
       svgPath,
       number,
       loadedSvg: "",
+      compressedSvg: "",
     };
   });
 }
@@ -68,6 +70,63 @@ async function buildRudiment(rudiment: Rudiment, outputDir: string) {
     encoding: "utf-8",
   });
   rudiment.loadedSvg = loadedSvg;
+  rudiment.compressedSvg = compressRudiment(loadedSvg);
+}
+
+let idMajor = 0;
+function compressRudiment(source: string) {
+  let smallest = source;
+
+  // Pull groups (the content of <g> tags) out of the files.
+  const groupMatcher = /<g(?: \w*="[^"]*")>((?:(?!<\/g>).)+)<\/g>/gs;
+  let stripped = smallest;
+  const groups: string[] = [];
+  let match;
+  while ((match = groupMatcher.exec(stripped)) !== null) {
+    groups.push(match[1]);
+    stripped = stripped.replaceAll(match[1], "");
+  }
+  // Replace the groups with references to a definition.
+  let grouped = smallest.replace("</svg>", "<defs></defs></svg>");
+  let idMinor = 0;
+  for (let i = 0; i < groups.length; i++) {
+    const group = groups[i];
+    const id = `g${idMajor}-${idMinor}`;
+    const potential = grouped
+      .replaceAll(group, `<use href="#${id}"/>`)
+      .replace("</defs></svg>", `<g id="${id}">${group}</g></defs></svg>`);
+    if (potential.length < grouped.length) {
+      grouped = potential;
+    }
+    idMinor++;
+  }
+  if (grouped.length < smallest.length) {
+    smallest = grouped;
+    idMajor++;
+  }
+
+  // Remove CSS block.
+  const noCss = smallest.replace(
+    /<style(?: \w*="[^"]*")>((?:(?!<\/style>).)+)<\/style>/gs,
+    ""
+  );
+  if (noCss.length < smallest.length) {
+    smallest = noCss;
+  }
+
+  // Remove whitespace.
+  const noWhitespace = smallest.replace(/>\s*</g, "><");
+  if (noWhitespace.length < smallest.length) {
+    smallest = noWhitespace;
+  }
+
+  console.log(
+    `Compressed ${source.length} to ${smallest.length} (-${Math.round(
+      (1 - smallest.length / source.length) * 100
+    )}%)`
+  );
+
+  return smallest;
 }
 
 async function buildRudiments(rudiments: Rudiment[], outputDir: string) {
@@ -111,7 +170,7 @@ async function buildHtml(rudiments: Rudiment[]) {
               </div>
               <div
                 className="rudiment-notation"
-                dangerouslySetInnerHTML={{ __html: rudiment.loadedSvg }}
+                dangerouslySetInnerHTML={{ __html: rudiment.compressedSvg }}
               ></div>
             </section>
           ))}
