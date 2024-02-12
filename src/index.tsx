@@ -144,6 +144,11 @@ async function buildHtml(rudiments: Rudiment[]) {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Rudiment Wiki</title>
+        <meta
+          name="description"
+          content="40 essential drum rudiments for practising your chops, available for
+          free."
+        />
         <style dangerouslySetInnerHTML={{ __html: css }} />
         <script dangerouslySetInnerHTML={{ __html: metronome }} />
         <link
