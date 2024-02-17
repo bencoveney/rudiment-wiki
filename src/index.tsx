@@ -182,8 +182,22 @@ async function buildHtml(rudiments: Rudiment[]) {
             Rudiment <span className="wiki">Wiki</span>
           </h1>
           <hr />
+          <nav>
+            <ul>
+              {rudiments.map((rudiment) => {
+                return (
+                  <li>
+                    {rudiment.number}:{" "}
+                    <a href={`#${rudiment.slug}`}>{rudiment.name}</a>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
+          <hr />
           {rudiments.map((rudiment, index) => (
             <>
+              <a id={rudiment.slug} />
               <div className="r-title">
                 {/* <span className="r-number">{rudiment.number}:</span> */}
                 <h2>{rudiment.name}</h2>
@@ -195,7 +209,7 @@ async function buildHtml(rudiments: Rudiment[]) {
                 ></div>
               </section>
               <div className="r-links">
-                <span className="r-links-label">Read more:</span>
+                <span className="r-links-label">Read more on:</span>
                 {Object.entries(rudiment.links).map(([reference, link]) => {
                   const name = referenceNames[reference as Reference];
                   return <a href={link}>{name}</a>;
