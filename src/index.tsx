@@ -176,17 +176,29 @@ async function buildHtml(rudiments: Rudiment[]) {
           <h1>
             Rudiment <span className="wiki">Wiki</span>
           </h1>
+          <hr />
           {rudiments.map((rudiment, index) => (
-            <section className="r" key={index}>
+            <>
               <div className="r-title">
                 {/* <span className="r-number">{rudiment.number}:</span> */}
                 <h2>{rudiment.name}</h2>
               </div>
-              <div
-                className="r-notation"
-                dangerouslySetInnerHTML={{ __html: rudiment.compressedSvg }}
-              ></div>
-            </section>
+              <section className="r" key={index}>
+                <div
+                  className="r-notation"
+                  dangerouslySetInnerHTML={{ __html: rudiment.compressedSvg }}
+                ></div>
+              </section>
+              <div className="r-links">
+                <span className="r-links-label">Read more:</span>
+                {rudiment.links.map((link, index) => {
+                  const url = new URL(link);
+                  const site = url.hostname.split(".")[1];
+                  return <a href={link}>{site}</a>;
+                })}
+              </div>
+              <hr />
+            </>
           ))}
         </main>
         <footer>

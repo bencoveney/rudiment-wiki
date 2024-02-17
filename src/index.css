@@ -100,6 +100,26 @@ h1 > .wiki {
   float: left;
 }
 
+.r-links {
+  padding: 1rem 0;
+  display: flex;
+  gap: 1rem;
+}
+
+.r-links > a:link,
+.r-links > a:hover,
+.r-links > a:visited,
+.r-links > a:active {
+  color: var(--theme-foreground);
+  text-decoration: underline;
+}
+
+hr {
+  border-bottom: 1px var(--theme-foreground) dashed;
+  margin: 1rem;
+  max-width: 400px;
+}
+
 footer {
   width: 100%;
   position: sticky;
