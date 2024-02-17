@@ -110,7 +110,7 @@ h1 > .wiki {
 .r-links > a:hover,
 .r-links > a:visited,
 .r-links > a:active {
-  color: var(--theme-foreground);
+  color: var(--theme-action);
   text-decoration: underline;
 }
 

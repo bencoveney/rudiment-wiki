@@ -4,7 +4,12 @@ import { exec } from "child_process";
 import { promisify } from "util";
 import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
-import { RudimentMetadata, metadata } from "./metadata.js";
+import {
+  Reference,
+  RudimentMetadata,
+  metadata,
+  referenceNames,
+} from "./metadata.js";
 
 const RUDIMENTS_DIR = "rudiments/";
 const BUILD_DIR = "build/";
@@ -191,10 +196,9 @@ async function buildHtml(rudiments: Rudiment[]) {
               </section>
               <div className="r-links">
                 <span className="r-links-label">Read more:</span>
-                {rudiment.links.map((link, index) => {
-                  const url = new URL(link);
-                  const site = url.hostname.split(".")[1];
-                  return <a href={link}>{site}</a>;
+                {Object.entries(rudiment.links).map(([reference, link]) => {
+                  const name = referenceNames[reference as Reference];
+                  return <a href={link}>{name}</a>;
                 })}
               </div>
               <hr />
