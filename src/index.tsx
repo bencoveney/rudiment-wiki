@@ -153,6 +153,7 @@ function compressJs(source: string): string {
 async function buildHtml(rudiments: Rudiment[]) {
   const css = await readFile("./src/index.css", { encoding: "utf-8" });
   const metronome = await readFile("./src/metronome.js", { encoding: "utf-8" });
+  const click = await readFile("./src/click.wav", { encoding: "base64" });
   const content = renderToStaticMarkup(
     <html lang="en">
       <head>
@@ -164,6 +165,9 @@ async function buildHtml(rudiments: Rudiment[]) {
           content="40 essential drum rudiments for practising your chops, available for free."
         />
         <style dangerouslySetInnerHTML={{ __html: compressCss(css) }} />
+        <script
+          dangerouslySetInnerHTML={{ __html: `window.click = "${click}"` }}
+        />
         <script dangerouslySetInnerHTML={{ __html: compressJs(metronome) }} />
         <link
           rel="icon"
@@ -184,9 +188,9 @@ async function buildHtml(rudiments: Rudiment[]) {
           <hr />
           <nav>
             <ul>
-              {rudiments.map((rudiment) => {
+              {rudiments.map((rudiment, index) => {
                 return (
-                  <li>
+                  <li key={index}>
                     {rudiment.number}:{" "}
                     <a href={`#${rudiment.slug}`}>{rudiment.name}</a>
                   </li>
@@ -196,13 +200,13 @@ async function buildHtml(rudiments: Rudiment[]) {
           </nav>
           <hr />
           {rudiments.map((rudiment, index) => (
-            <>
+            <React.Fragment key={index}>
               <a id={rudiment.slug} />
               <div className="r-title">
                 {/* <span className="r-number">{rudiment.number}:</span> */}
                 <h2>{rudiment.name}</h2>
               </div>
-              <section className="r" key={index}>
+              <section className="r">
                 <div
                   className="r-notation"
                   dangerouslySetInnerHTML={{ __html: rudiment.compressedSvg }}
@@ -212,11 +216,15 @@ async function buildHtml(rudiments: Rudiment[]) {
                 <span className="r-links-label">Read more on:</span>
                 {Object.entries(rudiment.links).map(([reference, link]) => {
                   const name = referenceNames[reference as Reference];
-                  return <a href={link}>{name}</a>;
+                  return (
+                    <a key={reference} href={link}>
+                      {name}
+                    </a>
+                  );
                 })}
               </div>
               <hr />
-            </>
+            </React.Fragment>
           ))}
         </main>
         <footer>
@@ -226,6 +234,10 @@ async function buildHtml(rudiments: Rudiment[]) {
             <input id="metronome_bpm" type="number" min={1} defaultValue={60} />
           </label>
           <button id="metronome_playstop">Play</button>
+          <audio
+            id="metronome_click"
+            src={`data:audio/wav;base64,${click}`}
+          ></audio>
           <span className="footer_about">
             <a href="https://github.com/bencoveney/rudiments">About</a>
           </span>
