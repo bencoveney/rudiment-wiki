@@ -30,10 +30,12 @@ async function initSound() {
   return {
     async playClick(time) {
       const { audioContext, audioBuffer } = getAudioContext(buffer);
+      const timestamp = audioContext.getOutputTimestamp();
+      const offsetTime = timestamp.contextTime + time;
       const source = audioContext.createBufferSource();
       source.buffer = await audioBuffer;
       source.connect(audioContext.destination);
-      source.start(time);
+      source.start(offsetTime);
     },
   };
 }
@@ -41,7 +43,6 @@ async function initSound() {
 async function init() {
   const playStop = document.getElementById("metronome_playstop");
   const bpm = document.getElementById("metronome_bpm");
-  const click = document.getElementById("metronome_click");
   let playing = false;
 
   const play = playStop.textContent;

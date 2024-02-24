@@ -234,10 +234,6 @@ async function buildHtml(rudiments: Rudiment[]) {
             <input id="metronome_bpm" type="number" min={1} defaultValue={60} />
           </label>
           <button id="metronome_playstop">Play</button>
-          <audio
-            id="metronome_click"
-            src={`data:audio/wav;base64,${click}`}
-          ></audio>
           <span className="footer_about">
             <a href="https://github.com/bencoveney/rudiments">About</a>
           </span>
