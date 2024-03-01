@@ -83,22 +83,27 @@ nav > ul > li > a:active {
   text-decoration: underline;
 }
 
-.r {
+.r,
+.about {
   margin: 1rem;
   border-radius: 0.5rem;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background-color: white;
+}
+
+.r {
   display: flex;
   flex-direction: column;
   justify-content: stretch;
   align-items: center;
-  background-color: white;
 }
 
 .r-title {
   padding: 1rem;
 }
 
-.r-title > h2 {
+.r-title > h2,
+.about-title > h2 {
   font-size: 1.3rem;
 }
 
@@ -127,9 +132,25 @@ nav > ul > li > a:active {
 .r-links > a:link,
 .r-links > a:hover,
 .r-links > a:visited,
-.r-links > a:active {
+.r-links > a:active,
+.about a:link,
+.about a:hover,
+.about a:visited,
+.about a:active {
   color: var(--theme-action);
   text-decoration: underline;
+}
+
+.about {
+  padding: 2rem;
+  text-align: left;
+}
+
+.about > p {
+  margin-bottom: 1rem;
+}
+.about > p:last-child {
+  margin-bottom: 0;
 }
 
 hr {
@@ -185,30 +206,4 @@ footer {
 
 #metronome_playstop:hover {
   background: var(--theme-action);
-}
-
-.footer_about {
-  display: block;
-  flex-grow: 1;
-  display: flex;
-  justify-content: end;
-  align-items: stretch;
-}
-
-.footer_about > a {
-  padding: 0.5rem 1rem;
-  display: block;
-}
-
-.footer_about > a:link,
-.footer_about > a:hover,
-.footer_about > a:visited,
-.footer_about > a:active {
-  color: var(--theme-foreground);
-  text-decoration: underline;
-}
-
-.footer_about > a:hover {
-  background: var(--theme-action);
-  color: var(--theme-background);
 }

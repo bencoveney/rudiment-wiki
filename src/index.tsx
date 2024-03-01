@@ -154,6 +154,7 @@ async function buildHtml(rudiments: Rudiment[]) {
   const css = await readFile("./src/index.css", { encoding: "utf-8" });
   const metronome = await readFile("./src/metronome.js", { encoding: "utf-8" });
   const click = await readFile("./src/click.wav", { encoding: "base64" });
+  const gitCommit = await execPromise("git rev-parse --short HEAD");
   const content = renderToStaticMarkup(
     <html lang="en">
       <head>
@@ -226,6 +227,24 @@ async function buildHtml(rudiments: Rudiment[]) {
               <hr />
             </React.Fragment>
           ))}
+          <h2 className="about-title">About</h2>
+          <aside className="about">
+            <p>
+              This page is a quick, simple, and free reference for drum
+              rudiments.
+            </p>
+            <p>
+              You can save this page directly to your computer (<i>Save As</i>{" "}
+              in your browser). You can read the source code for the website and
+              contribute{" "}
+              <a href="https://github.com/bencoveney/rudiments">on Github</a>.
+            </p>
+            <p>
+              This version of the Rudiments Wiki was built on{" "}
+              <i>{new Date().toLocaleString("en-GB")}</i> from commit{" "}
+              <code>{gitCommit.stdout}</code>.
+            </p>
+          </aside>
         </main>
         <footer>
           <span className="metronome_name">Metronome</span>
@@ -234,9 +253,6 @@ async function buildHtml(rudiments: Rudiment[]) {
             <input id="metronome_bpm" type="number" min={1} defaultValue={60} />
           </label>
           <button id="metronome_playstop">Play</button>
-          <span className="footer_about">
-            <a href="https://github.com/bencoveney/rudiments">About</a>
-          </span>
         </footer>
       </body>
     </html>
