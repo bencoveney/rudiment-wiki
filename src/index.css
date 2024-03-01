@@ -207,3 +207,40 @@ footer {
 #metronome_playstop:hover {
   background: var(--theme-action);
 }
+
+@media print {
+  :root {
+    --theme-background: white;
+    --theme-foreground: black;
+    --theme-action: black;
+    --theme-highlight: black;
+  }
+
+  hr,
+  nav,
+  .r-links,
+  footer,
+  .about-title,
+  .about,
+  h1 {
+    display: none !important;
+  }
+
+  main,
+  .r-notation {
+    padding: 0;
+    margin: 0;
+  }
+
+  .r {
+    box-shadow: none;
+  }
+
+  main > * {
+    max-width: none;
+  }
+
+  .prevent-break {
+    break-inside: avoid-page;
+  }
+}

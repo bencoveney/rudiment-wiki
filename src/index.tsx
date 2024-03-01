@@ -202,27 +202,29 @@ async function buildHtml(rudiments: Rudiment[]) {
           <hr />
           {rudiments.map((rudiment, index) => (
             <React.Fragment key={index}>
-              <a id={rudiment.slug} />
-              <div className="r-title">
-                {/* <span className="r-number">{rudiment.number}:</span> */}
-                <h2>{rudiment.name}</h2>
-              </div>
-              <section className="r">
-                <div
-                  className="r-notation"
-                  dangerouslySetInnerHTML={{ __html: rudiment.compressedSvg }}
-                ></div>
-              </section>
-              <div className="r-links">
-                <span className="r-links-label">Read more on:</span>
-                {Object.entries(rudiment.links).map(([reference, link]) => {
-                  const name = referenceNames[reference as Reference];
-                  return (
-                    <a key={reference} href={link}>
-                      {name}
-                    </a>
-                  );
-                })}
+              <div className="prevent-break">
+                <a id={rudiment.slug} />
+                <div className="r-title">
+                  {/* <span className="r-number">{rudiment.number}:</span> */}
+                  <h2>{rudiment.name}</h2>
+                </div>
+                <section className="r">
+                  <div
+                    className="r-notation"
+                    dangerouslySetInnerHTML={{ __html: rudiment.compressedSvg }}
+                  ></div>
+                </section>
+                <div className="r-links">
+                  <span className="r-links-label">Read more on:</span>
+                  {Object.entries(rudiment.links).map(([reference, link]) => {
+                    const name = referenceNames[reference as Reference];
+                    return (
+                      <a key={reference} href={link}>
+                        {name}
+                      </a>
+                    );
+                  })}
+                </div>
               </div>
               <hr />
             </React.Fragment>
@@ -231,15 +233,12 @@ async function buildHtml(rudiments: Rudiment[]) {
           <aside className="about">
             <p>
               This page is a quick, simple, and free reference for drum
-              rudiments.
+              rudiments. You can print this page to PDF/paper, or save it
+              directly to your device (<i>Save As</i> in your browser).
             </p>
             <p>
-              You can save this page directly to your computer (<i>Save As</i>{" "}
-              in your browser). You can read the source code for the website and
-              contribute{" "}
+              You can read the source code for this page and contribute{" "}
               <a href="https://github.com/bencoveney/rudiments">on Github</a>.
-            </p>
-            <p>
               This version of the Rudiments Wiki was built on{" "}
               <i>{new Date().toLocaleString("en-GB")}</i> from commit{" "}
               <code>{gitCommit.stdout}</code>.
