@@ -11,6 +11,8 @@ import {
   referenceNames,
 } from "./metadata.js";
 
+const skipLilypond = process.argv.includes("--skipLilypond");
+
 const RUDIMENTS_DIR = "rudiments/";
 const BUILD_DIR = "build/";
 const SVG_DIR = "assets/";
@@ -66,11 +68,13 @@ async function getRudiments() {
 
 const execPromise = promisify(exec);
 async function buildRudiment(rudiment: Rudiment, outputDir: string) {
-  const command = `
-    lilypond --svg -dcrop=#t -dpoint-and-click=#f --output="${outputDir}" ${rudiment.lilypadPath};
-  `.trim();
-  const { stderr } = await execPromise(command);
-  console.log(stderr);
+  if (!skipLilypond) {
+    const command = `
+      lilypond --svg -dcrop=#t -dpoint-and-click=#f --output="${outputDir}" ${rudiment.lilypadPath};
+    `.trim();
+    const { stderr } = await execPromise(command);
+    console.log(stderr);
+  }
   const loadedSvg = await readFile(resolve(BUILD_DIR, rudiment.svgPath), {
     encoding: "utf-8",
   });
@@ -125,11 +129,11 @@ function compressRudiment(source: string) {
     smallest = noWhitespace;
   }
 
-  console.log(
-    `Compressed ${source.length} to ${smallest.length} (-${Math.round(
-      (1 - smallest.length / source.length) * 100
-    )}%)`
-  );
+  // console.log(
+  //   `Compressed ${source.length} to ${smallest.length} (-${Math.round(
+  //     (1 - smallest.length / source.length) * 100
+  //   )}%)`
+  // );
 
   return smallest;
 }
