@@ -253,7 +253,13 @@ async function buildHtml(rudiments: Rudiment[]) {
           <span className="metronome_name">Metronome</span>
           <label className="metronome_bpm_wrapper">
             BPM{" "}
-            <input id="metronome_bpm" type="number" min={1} defaultValue={60} />
+            <input
+              id="metronome_bpm"
+              type="number"
+              min={1}
+              max={1000}
+              defaultValue={60}
+            />
           </label>
           <button id="metronome_playstop">Play</button>
         </footer>
