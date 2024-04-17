@@ -151,7 +151,7 @@ function compressCss(source: string): string {
 }
 
 function compressJs(source: string): string {
-  return source.replaceAll(/\n\s*/gs, "");
+  return source.replaceAll(/\/\/.*/g, "").replaceAll(/\n\s*/gs, "");
 }
 
 async function buildHtml(rudiments: Rudiment[]) {

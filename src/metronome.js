@@ -26,7 +26,7 @@ function getAudioContext(buffer) {
 
 async function initSound() {
   const buffer = await loadSound(window.click);
-
+  let removers = [];
   return {
     async playClick(time) {
       const { audioContext, audioBuffer } = getAudioContext(buffer);
@@ -36,6 +36,21 @@ async function initSound() {
       source.buffer = await audioBuffer;
       source.connect(audioContext.destination);
       source.start(offsetTime);
+      const remover = () => {
+        source.stop();
+        source.disconnect();
+        const index = removers.indexOf(remover);
+        removers.splice(index, 1);
+        source.removeEventListener("ended", remover);
+      };
+      source.addEventListener("ended", remover);
+      removers.push(remover);
+    },
+    stop() {
+      for (let i = removers.length - 1; i >= 0; i--) {
+        removers[i]();
+      }
+      removers = [];
     },
   };
 }
@@ -45,19 +60,13 @@ async function init() {
   const bpm = document.getElementById("metronome_bpm");
   let playing = false;
 
-  const play = playStop.textContent;
-  const stop = "Stop";
-
-  const { playClick } = await initSound();
+  const { playClick, stop } = await initSound();
 
   playStop.addEventListener("click", () => {
-    playClick(0);
-    playClick(1);
-    playClick(2);
+    playing ? stop() : (playClick(0), playClick(1), playClick(2));
     const targetBpm = bpm.value;
     playing = !playing;
-    console.log(playing ? `playing at ${targetBpm} bpm` : "stopping");
-    playStop.textContent = playing ? play : stop;
+    playStop.textContent = !playing ? "Play" : "Stop";
   });
 }
 
