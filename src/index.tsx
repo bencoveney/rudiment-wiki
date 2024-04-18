@@ -154,11 +154,17 @@ function compressJs(source: string): string {
   return source.replaceAll(/\/\/.*/g, "").replaceAll(/\n\s*/gs, "");
 }
 
+function encodeSvg(source: string): string {
+  return source.replace(/\"/g, "%22").replace(/\#/g, "%23");
+}
+
 async function buildHtml(rudiments: Rudiment[]) {
   const css = await readFile("./src/index.css", { encoding: "utf-8" });
   const metronome = await readFile("./src/metronome.js", { encoding: "utf-8" });
+  const favicon = await readFile("./src/favicon.svg", { encoding: "utf-8" });
   const click = await readFile("./src/click.wav", { encoding: "base64" });
   const gitCommit = await execPromise("git rev-parse --short HEAD");
+
   const content = renderToStaticMarkup(
     <html lang="en">
       <head>
@@ -176,13 +182,8 @@ async function buildHtml(rudiments: Rudiment[]) {
         <script dangerouslySetInnerHTML={{ __html: compressJs(metronome) }} />
         <link
           rel="icon"
-          type="image/png"
-          href="https://emojifavicon.dev/favicons/1f941.png"
-        />
-        <link
-          rel="shortcut icon"
-          type="image/x-icon"
-          href="https://emojifavicon.dev/favicons/1f941.ico"
+          type="image/svg+xml"
+          href={`data:image/svg+xml,${encodeSvg(favicon)}`}
         />
       </head>
       <body>

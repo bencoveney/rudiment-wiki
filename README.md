@@ -15,6 +15,10 @@ http://lilypond.org/doc/v2.25/Documentation/usage/basic-command_002dline-options
 lilypond --svg -dcrop=#t -dpoint-and-click=#f --output="./assets/" ./rudiments/single-stroke-roll.ly
 ```
 
+## Credits
+
+Emojis favicon designed by [OpenMoji](https://openmoji.org/). License: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/#)
+
 ## TODO
 
 - Maybe add dev script:
