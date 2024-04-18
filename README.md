@@ -3,33 +3,25 @@
 ## Usage
 
 ```bash
-$ npm run build
-$ npm run dev
+# Do a production build.
+npm run build
+
+# Start the dev server in watch mode.
+npm run dev
+
+# Start the dev server, without running lilypond each time.
+npm run dev-fast
 ```
 
 ## Lilypond
 
-http://lilypond.org/doc/v2.25/Documentation/usage/basic-command_002dline-options-for-lilypond
+Music notation is build using [lilypond](http://lilypond.org/). You will need to install it on your machine to build the music notation.
 
 ```bash
+sudo apt-get install -y lilypond
+
 lilypond --svg -dcrop=#t -dpoint-and-click=#f --output="./assets/" ./rudiments/single-stroke-roll.ly
 ```
-
-## Credits
-
-Emojis favicon designed by [OpenMoji](https://openmoji.org/). License: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/#)
-
-## TODO
-
-- Maybe add dev script:
-  - Get nodemon changed files to reduce writes
-  - Remove dependency on concurrently
-- Some stuff doesn't align between references
-  - Numbers
-  - Alternatives
-  - Accents
-- Some rendering suboptimal
-  - Accents above hands
 
 ## References
 
@@ -37,3 +29,16 @@ Emojis favicon designed by [OpenMoji](https://openmoji.org/). License: [CC BY-SA
 - https://www.40drumrudiments.com/
 - https://www.drumeo.com/beat/rudiments/
 - https://www.pas.org/resources/rudiments
+
+## Credits
+
+Emojis favicon designed by [OpenMoji](https://openmoji.org/). License: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+## TODO
+
+- Some stuff doesn't align between references
+  - Numbers
+  - Alternatives
+  - Accents
+- Some rendering suboptimal
+  - Accents above hands
