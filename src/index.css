@@ -8,7 +8,6 @@
   --font-monospace: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console,
     monospace;
 
-  /* https://colorhunt.co/palette/eeedebe0ccbe7472643c3633 */
   --color-white: #eeedeb;
   --color-salmon: #e0ccbe;
   --color-green: #747264;
@@ -19,13 +18,6 @@
   --theme-action: var(--color-green);
   --theme-highlight: var(--color-salmon);
 }
-
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --theme-background: var(--color-black);
-    --theme-foreground: var(--color-white);
-  }
-} */
 
 * {
   margin: 0;

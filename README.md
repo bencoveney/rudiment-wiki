@@ -34,6 +34,8 @@ lilypond --svg -dcrop=#t -dpoint-and-click=#f --output="./assets/" ./rudiments/s
 
 Emojis favicon designed by [OpenMoji](https://openmoji.org/). License: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
+Colour palette from [ColorHunt](https://colorhunt.co/palette/eeedebe0ccbe7472643c3633)
+
 ## TODO
 
 - Some stuff doesn't align between references
