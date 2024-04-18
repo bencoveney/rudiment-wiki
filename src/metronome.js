@@ -25,26 +25,12 @@ function getAudioContext(buffer) {
 }
 
 async function scheduler() {
-  const buffer = await loadSound(window.click);
+  const scheduleFreqMs = 250;
+  const scheduleAheadSecs = 0.75;
+  let scheduledUpTo = 0;
   let removers = [];
-  async function queueAt(time) {
-    const { audioContext, audioBuffer } = getAudioContext(buffer);
-    const timestamp = audioContext.getOutputTimestamp();
-    const offsetTime = timestamp.contextTime + time;
-    const source = audioContext.createBufferSource();
-    source.buffer = await audioBuffer;
-    source.connect(audioContext.destination);
-    source.start(offsetTime);
-    const remover = () => {
-      source.stop();
-      source.disconnect();
-      const index = removers.indexOf(remover);
-      removers.splice(index, 1);
-      source.removeEventListener("ended", remover);
-    };
-    source.addEventListener("ended", remover);
-    removers.push(remover);
-  }
+  let timeoutId;
+  const buffer = await loadSound(window.click);
   function clearQueue() {
     for (let i = removers.length - 1; i >= 0; i--) {
       removers[i]();
@@ -52,12 +38,39 @@ async function scheduler() {
     removers = [];
   }
   return {
-    async start(bpm) {
-      queueAt(0);
-      queueAt(1);
-      queueAt(2);
+    start(bpm) {
+      const { audioContext, audioBuffer } = getAudioContext(buffer);
+      const secsPerBeat = 60 / bpm;
+      async function scheduleAtTime(time) {
+        let source = audioContext.createBufferSource();
+        source.buffer = await audioBuffer;
+        source.connect(audioContext.destination);
+        source.start(time);
+        const remover = () => {
+          source.stop();
+          source.disconnect();
+          const index = removers.indexOf(remover);
+          removers.splice(index, 1);
+          source.removeEventListener("ended", remover);
+          source = null;
+        };
+        source.addEventListener("ended", remover);
+        removers.push(remover);
+      }
+      function populateSchedule() {
+        while (scheduledUpTo < audioContext.currentTime + scheduleAheadSecs) {
+          scheduledUpTo += secsPerBeat;
+          scheduleAtTime(scheduledUpTo);
+        }
+      }
+      scheduledUpTo = audioContext.currentTime;
+      scheduleAtTime(scheduledUpTo);
+      timeoutId = setInterval(populateSchedule, scheduleFreqMs);
     },
-    stop: clearQueue,
+    stop() {
+      clearInterval(timeoutId);
+      clearQueue();
+    },
   };
 }
 
