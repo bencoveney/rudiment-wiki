@@ -225,6 +225,10 @@ footer {
     margin: 0;
   }
 
+  .r-title {
+    padding-bottom: 0;
+  }
+
   .r {
     box-shadow: none;
   }
