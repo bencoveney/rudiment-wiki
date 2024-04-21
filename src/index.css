@@ -186,6 +186,11 @@ footer {
   color: var(--theme-foreground);
 }
 
+.metronome_bpm_wrapper > #metronome_bpm:disabled {
+  background-color: var(--theme-highlight);
+  color: var(--theme-action);
+}
+
 #metronome_playstop {
   padding: 0.25em 0.5rem;
   margin: 0.25em 0;

@@ -44,3 +44,5 @@ Colour palette from [ColorHunt](https://colorhunt.co/palette/eeedebe0ccbe7472643
   - Accents
 - Some rendering suboptimal
   - Accents above hands
+- Add "listen" mode - lilypond to midi?
+- Allow update to BPM
