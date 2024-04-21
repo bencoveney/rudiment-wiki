@@ -129,11 +129,11 @@ function compressRudiment(source: string) {
     smallest = noWhitespace;
   }
 
-  // console.log(
-  //   `Compressed ${source.length} to ${smallest.length} (-${Math.round(
-  //     (1 - smallest.length / source.length) * 100
-  //   )}%)`
-  // );
+  console.log(
+    `Compressed ${source.length} to ${smallest.length} (-${Math.round(
+      (1 - smallest.length / source.length) * 100
+    )}%)`
+  );
 
   return smallest;
 }
@@ -170,11 +170,28 @@ async function buildHtml(rudiments: Rudiment[]) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Rudiment Wiki</title>
+        <title>
+          Drum Rudiment Wiki - Practice the essential drum rudiments
+        </title>
         <meta
           name="description"
-          content="40 essential drum rudiments for practising your chops, available for free."
+          content="Essential drum rudiments for practising your chops, sticking, and rhythm"
         />
+        <meta
+          property="og:title"
+          content="Drum Rudiment Wiki - Practice the essential drum rudiments"
+        />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:description"
+          content="Essential drum rudiments for practising your chops, sticking, and rhythm"
+        />
+        {/*
+          Images would be nice, but they need to reference external resources.
+          <meta property="og:image" content="https://rudiment.wiki/thumbnail" />
+        */}
+        <meta property="og:url" content="https://rudiment.wiki" />
+        <meta property="og:site_name" content="Drum Rudiment Wiki" />
         <style dangerouslySetInnerHTML={{ __html: compressCss(css) }} />
         <script
           dangerouslySetInnerHTML={{ __html: `window.click = "${click}"` }}
@@ -189,7 +206,7 @@ async function buildHtml(rudiments: Rudiment[]) {
       <body>
         <main>
           <h1>
-            Rudiment <span className="wiki">Wiki</span>
+            Drum Rudiment <span className="wiki">Wiki</span>
           </h1>
           <hr />
           <nav>
