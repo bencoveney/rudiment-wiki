@@ -252,20 +252,22 @@ async function buildHtml(rudiments: Rudiment[]) {
             </React.Fragment>
           ))}
           <h2 className="about-title">About</h2>
-          <aside className="about">
-            <p>
-              This page is a quick, simple, and free reference for drum
-              rudiments. You can print this page to PDF/paper, or save it
-              directly to your device (<i>Save As</i> in your browser).
-            </p>
-            <p>
-              You can read the source code for this page and contribute{" "}
-              <a href="https://github.com/bencoveney/rudiments">on Github</a>.
-              This version of the Rudiments Wiki was built on{" "}
-              <i>{new Date().toLocaleString("en-GB")}</i> from commit{" "}
-              <code>{gitCommit.stdout}</code>.
-            </p>
-          </aside>
+          <div>
+            <aside className="about">
+              <p>
+                This page is a quick, simple, and free reference for drum
+                rudiments. You can print this page to PDF/paper, or save it
+                directly to your device (<i>Save As</i> in your browser).
+              </p>
+              <p>
+                You can read the source code for this page and contribute{" "}
+                <a href="https://github.com/bencoveney/rudiments">on Github</a>.
+                This version of the Rudiments Wiki was built on{" "}
+                <i>{new Date().toLocaleString("en-GB")}</i> from commit{" "}
+                <code>{gitCommit.stdout}</code>.
+              </p>
+            </aside>
+          </div>
         </main>
         <footer>
           <span className="metronome_name">Metronome</span>
