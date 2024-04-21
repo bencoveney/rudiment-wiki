@@ -264,7 +264,7 @@ async function buildHtml(rudiments: Rudiment[]) {
                 <a href="https://github.com/bencoveney/rudiments">on Github</a>.
                 This version of the Rudiments Wiki was built on{" "}
                 <i>{new Date().toLocaleString("en-GB")}</i> from commit{" "}
-                <code>{gitCommit.stdout}</code>.
+                <code>{gitCommit.stdout.trim()}</code>.
               </p>
             </aside>
           </div>
